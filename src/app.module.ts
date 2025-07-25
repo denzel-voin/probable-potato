@@ -2,9 +2,12 @@ import {Module} from '@nestjs/common';
 import {ConfigModule} from '@nestjs/config';
 import {SequelizeModule} from '@nestjs/sequelize';
 import * as process from "node:process";
+import {User} from "./users/user.model";
+import {UsersModule} from "./users/users.module";
 
 @Module({
     imports: [
+        UsersModule,
         ConfigModule.forRoot({
             isGlobal: true,
         }),
@@ -15,7 +18,7 @@ import * as process from "node:process";
             username: process.env.DB_USERNAME,
             password: process.env.DB_PASSWORD,
             database: 'potato',
-            models: [],
+            models: [User],
             autoLoadModels: true,
         }),
     ],
