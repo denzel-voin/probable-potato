@@ -19,20 +19,20 @@ export class User extends Model<User, UserCreationInterface> {
 
     @ApiProperty({ example: 'denzel94', description: 'Логин пользователя' })
     @Column({ type: DataType.STRING, allowNull: false, unique: true })
-    login: string;
+    declare login: string;
 
     @ApiProperty({ example: 'pass228', description: 'Пароль пользователя' })
     @Column({ type: DataType.STRING, allowNull: false })
-    password: string;
+    declare password: string;
 
     @ApiProperty({ example: 'true', description: 'Статус бана' })
     @Column({ type: DataType.BOOLEAN, defaultValue: false })
-    banned: boolean;
+    declare banned: boolean;
 
     @ApiProperty({ example: 'Оскорбление других пользователей', description: 'Описание бана' })
     @Column({ type: DataType.STRING, allowNull: true })
-    banReason: string;
+    declare banReason: string;
 
     @BelongsToMany(() => Role, () => UserRoles)
-    roles: Role[];
+    declare roles: Role[];
 }
