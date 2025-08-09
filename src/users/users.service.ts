@@ -13,6 +13,7 @@ export class UsersService {
         const role = await this.rolesService.getRoleByValue('USER')
         if (role) {
             await user.$set('roles', [role.id])
+            user.roles = [role]
         }
         return user;
     }
@@ -20,5 +21,10 @@ export class UsersService {
     async findAll() {
         const users = await this.userRepository.findAll({include: {all: true}});
         return users;
+    }
+
+    async getUserByLogin(login: string) {
+        const user = await this.userRepository.findOne({where: {login}, include: {all: true}})
+        return user;
     }
 }
